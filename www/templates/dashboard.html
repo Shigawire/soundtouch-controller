@@ -1,0 +1,16 @@
+<ion-view view-title="Dashboard">
+  <ion-content>
+    <div> <!--Browsing DIV-->
+    </div>
+
+    <div ng-hide="isEmpty(SoundTouchDevices.devices)"> <!--Device List DIV-->
+      <div class="list">
+        <a ng-repeat="(device, properties) in SoundTouchDevices.devices" class="item item-icon-right" href="#">
+          <h2>{{device}}</h2>
+          <p><span ng-repeat="(key, property) in properties"> {{key}}: {{property}}</span></p>
+          <i class="icon ion-ios-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
