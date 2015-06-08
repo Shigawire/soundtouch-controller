@@ -10,18 +10,19 @@ angular.module('starter.controllers', [])
 
     console.log("request");
 
+    device_http_address = 'http://'+host+':'+port+'/info';
 
-    cordovaHTTP.get("https://google.com/", {
-        id: 12,
-        message: "test"
-    }, { Authorization: "OAuth2: token" }, function(response) {
-        console.log(response.status);
+
+    cordovaHTTP.get("http://192.168.2.192:8090/info", {
+
+    }, {}, function(response) {
     }, function(response) {
-        console.error(response.error);
+    }).then(function(response) {
+      console.log(JSON.stringify(response))
+    }, function (response) {
+      console.log(JSON.stringify(response))
     });
 
-
-    device_http_address = 'http://'+host+':'+port+'/info';
 /*
     cordovaHTTP.get("https://google.com/", {
         id: 12,
@@ -178,8 +179,10 @@ angular.module('starter.controllers', [])
   $scope.helper = helper
 
 })
-.controller('HomeCtrl', function ($scope, SoundTouchDevices){
+.controller('HomeCtrl', function ($scope, SoundTouchDevices, helper){
   $scope.SoundTouchDevices = SoundTouchDevices;
+
+  $scope.helper = helper
 
 })
 

@@ -1,11 +1,25 @@
 <ion-view view-title="Dashboard">
   <ion-content>
     <div> <!--Browsing DIV-->
+      <div class="list list-inset" ng-show="helper.sizeOf(SoundTouchDevices.devices) == 0">
+        <div class="item item-divider">
+          Discovering...
+        </div>
+        <div class="item item-text-wrap">
+          <p>We're just discovering new SoundTouch devices for you, hold on :-)</p>
+        </div>
+      </div>
+      <div style="text-align: center">
+        <ion-spinner></ion-spinner>
+      </div>
     </div>
 
-    <div ng-hide="isEmpty(SoundTouchDevices.devices)"> <!--Device List DIV-->
+    <div ng-show="helper.sizeOf(SoundTouchDevices.devices) > 0"> <!--Device List DIV-->
       <div class="list">
-        <a ng-repeat="(device, properties) in SoundTouchDevices.devices" class="item item-icon-right" href="#">
+        <div class="item item-divider">
+          SoundTouch Devices
+        </div>
+        <a ng-repeat="(device, properties) in SoundTouchDevices.devices" class="item item-icon-right" href="#/app/manage/{{device}}">
           <h2>{{device}}</h2>
           <p><span ng-repeat="(key, property) in properties"> {{key}}: {{property}}</span></p>
           <i class="icon ion-ios-arrow-right"></i>

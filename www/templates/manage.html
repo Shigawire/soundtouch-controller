@@ -1,10 +1,30 @@
 <ion-view view-title="Manage">
   <ion-content>
-    <div> <!--Browsing DIV-->
+    <div>
+      <div class="list" ng-show="helper.sizeOf(SoundTouchDevices.devices) >1 && SoundTouchDevices.current_device">
+        <label class="item item-input item-select">
+          <div class="input-label">
+            SoundTouch Device
+          </div>
+          <select ng-model="SoundTouchDevices.current_device">
+          </select>
+        </label>
+      </div>
     </div>
 
-    <div ng-show="isEmpty(SoundTouchDevices.devices)">
-      You no have device!
+    <div ng-show="helper.sizeOf(SoundTouchDevices.devices) == 0">
+      <div class="list list-inset">
+        <div class="item item-divider">
+          No devices found
+        </div>
+        <div class="item item-text-wrap">
+          <p>We haven't found any SoundTouch device yet.</p>
+
+          <a class="button button-full button-positive" href="#/app/dashboard">
+            Browse for new devices
+          </a>
+        </div>
+      </div>
     </div>
 
     current device: {{SoundTouchDevices.current_device}}
